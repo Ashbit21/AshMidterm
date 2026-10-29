@@ -4,13 +4,27 @@ using UnityEngine;
 
 public class CoinScript : MonoBehaviour
 {
-    //The player calls this function on the coin whenever they bump into it
-    //You can change its contents if you want something different to happen on collection
-    //For example, what if the coin teleported to a new location instead of being destroyed?
+    
+    public AudioSource CoinPickup;
+    public AudioClip SoundEffect;
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        
+        if (other.CompareTag("Player"))
+        {
+            GetBumped();
+
+            CoinPickup.PlayOneShot(SoundEffect);
+
+            Destroy(gameObject, SoundEffect.length);
+        }
+        
+    }
+
     public void GetBumped()
     {
-        //This destroys the coin
-        Destroy(gameObject);
-
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
     }
 }
