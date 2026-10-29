@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hazard
   - Wall
+  - Wall non collide
   layers:
   - Default
   - TransparentFX
